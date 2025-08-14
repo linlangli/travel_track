@@ -1,0 +1,1 @@
+enum Transport { car, bus, plane }

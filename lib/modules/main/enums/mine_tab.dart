@@ -1,0 +1,4 @@
+enum MineTab {
+  posts,
+  collections,
+}
