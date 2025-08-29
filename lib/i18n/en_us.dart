@@ -18,4 +18,5 @@ const Map<String, String> enUS = {
   'mine_collect': 'Collect',
   'mine_viewed': 'Viewed',
   'mine_collected': 'Collected',
+  'retry': 'Retry',
 };

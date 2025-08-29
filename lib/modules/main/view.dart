@@ -49,7 +49,7 @@ class MainPage extends GetView<MainController> {
                 onTap: () {
                   controller.setPageState(PageState.normal);
                 },
-                text: '重试',
+                text: 'retry'.tr,
               );
             } else if (controller.pageState == PageState.error) {
               return StateWidget(
@@ -57,7 +57,7 @@ class MainPage extends GetView<MainController> {
                 onTap: () {
                   controller.setPageState(PageState.normal);
                 },
-                text: '重试',
+                text: 'retry'.tr,
               );
             } else if (controller.pageState == PageState.loading) {
               return Center(child: CircularProgressIndicator());

@@ -29,7 +29,7 @@ class TitleBarState extends State<TitleBar> {
         ).button(onTap: () {
           widget.onSetting();
         }),
-        Text('旅迹'),
+        Text('app_name'.tr),
         SvgPicture.asset('assets/images/title/message_icon.svg',
           width: 24, height: 28,
         ).button(
