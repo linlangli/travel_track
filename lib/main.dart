@@ -16,6 +16,7 @@ void main() async{
 class TravelTrackApp extends StatelessWidget {
   const TravelTrackApp({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);

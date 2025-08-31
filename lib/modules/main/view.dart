@@ -45,7 +45,7 @@ class MainPage extends GetView<MainController> {
           builder: (controller) {
             if (controller.pageState == PageState.empty) {
               return StateWidget(
-                image: 'assets/images/common/state_empty.svg',
+                image: 'assets/images/icons/state_empty.svg',
                 onTap: () {
                   controller.setPageState(PageState.normal);
                 },
@@ -53,7 +53,7 @@ class MainPage extends GetView<MainController> {
               );
             } else if (controller.pageState == PageState.error) {
               return StateWidget(
-                image: 'assets/images/common/state_error.svg',
+                image: 'assets/images/icons/state_error.svg',
                 onTap: () {
                   controller.setPageState(PageState.normal);
                 },

@@ -53,7 +53,7 @@ class PersonInfoWidget extends StatelessWidget {
                   ),
                   Spacer(),
                   SvgPicture.asset(
-                    'assets/images/mine/card_icon.svg', width: 32, height: 32,),
+                    'assets/images/icons/card_icon.svg', width: 32, height: 32,),
                 ],
               ),
               SizedBox(height: 4,),

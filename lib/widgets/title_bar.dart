@@ -24,13 +24,13 @@ class TitleBarState extends State<TitleBar> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SvgPicture.asset('assets/images/title/setting_icon.svg',
+        SvgPicture.asset('assets/images/icons/setting_icon.svg',
           width: 32, height: 32,
         ).button(onTap: () {
           widget.onSetting();
         }),
         Text('app_name'.tr),
-        SvgPicture.asset('assets/images/title/message_icon.svg',
+        SvgPicture.asset('assets/images/icons/message_icon.svg',
           width: 24, height: 28,
         ).button(
             type: ButtonType.image,

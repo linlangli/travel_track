@@ -37,8 +37,8 @@ class NavigatorWidgetState extends State<NavigatorBar> {
         children: [
           SvgPicture.asset(
             selectedTab == NavigatorTab.home
-                ? 'assets/images/navigator/home_icon_selected.svg'
-                : 'assets/images/navigator/home_icon.svg',
+                ? 'assets/images/icons/navigator_home_active.svg'
+                : 'assets/images/icons/navigator_home.svg',
             width: 28,
             height: 28,
           ),
@@ -57,8 +57,8 @@ class NavigatorWidgetState extends State<NavigatorBar> {
         children: [
           SvgPicture.asset(
             selectedTab == NavigatorTab.discover
-                ? 'assets/images/navigator/discover_icon_selected.svg'
-                : 'assets/images/navigator/discover_icon.svg',
+                ? 'assets/images/icons/navigator_discover_active.svg'
+                : 'assets/images/icons/navigator_discoversvg.svg',
             width: 28,
             height: 28,
           ),
@@ -76,8 +76,8 @@ class NavigatorWidgetState extends State<NavigatorBar> {
         children: [
           SvgPicture.asset(
             selectedTab == NavigatorTab.community
-                ? 'assets/images/navigator/community_icon_selected.svg'
-                : 'assets/images/navigator/community_icon.svg',
+                ? 'assets/images/icons/navigator_community_active.svg'
+                : 'assets/images/icons/navigator_community.svg',
             width: 32,
             height: 32,
           ),
@@ -95,8 +95,8 @@ class NavigatorWidgetState extends State<NavigatorBar> {
         children: [
           SvgPicture.asset(
             selectedTab == NavigatorTab.mine
-                ? 'assets/images/navigator/mine_icon_selected.svg'
-                : 'assets/images/navigator/mine_icon.svg',
+                ? 'assets/images/icons/navigator_mine_active.svg'
+                : 'assets/images/icons/navigator_mine.svg',
             width: 28,
             height: 28,
           ),

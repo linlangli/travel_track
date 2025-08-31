@@ -30,7 +30,7 @@ class TravelInfoItem extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/list/location_icon.svg',
+                'assets/images/icons/location_icon.svg',
                 width: 16,
                 height: 16,
               ),
@@ -46,7 +46,7 @@ class TravelInfoItem extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               SvgPicture.asset(
-                'assets/images/list/location_icon.svg',
+                'assets/images/icons/location_icon.svg',
                 width: 16,
                 height: 16,
               ),
@@ -90,7 +90,7 @@ class TravelInfoItem extends StatelessWidget {
             textBaseline: TextBaseline.alphabetic,
             children: [
               SvgPicture.asset(
-                'assets/images/list/people_icon.svg',
+                'assets/images/icons/people_icon.svg',
                 width: 16,
                 height: 16,
               ),
@@ -105,7 +105,7 @@ class TravelInfoItem extends StatelessWidget {
                 width: 12,
               ),
               SvgPicture.asset(
-                'assets/images/list/wallet_icon.svg',
+                'assets/images/icons/wallet_icon.svg',
                 width: 16,
                 height: 16,
               ),
@@ -120,7 +120,7 @@ class TravelInfoItem extends StatelessWidget {
                 width: 12,
               ),
               SvgPicture.asset(
-                'assets/images/common/clock_icon.svg',
+                'assets/images/icons/clock_icon.svg',
                 width: 16,
                 height: 16,
               ),
@@ -139,7 +139,7 @@ class TravelInfoItem extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(
-                'assets/images/list/tag_icon.svg',
+                'assets/images/icons/tag_icon.svg',
                 width: 20,
                 height: 20,
               ),
@@ -166,7 +166,7 @@ class TravelInfoItem extends StatelessWidget {
         right: 8,
         top: -4,
         child: SvgPicture.asset(
-          'assets/images/list/planing_icon.svg',
+          'assets/images/icons/planing_icon.svg',
           width: 16,
           height: 16,
         ),
