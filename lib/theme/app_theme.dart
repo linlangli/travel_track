@@ -6,31 +6,72 @@ class AppTheme {
   AppTheme._();
 
   static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: AppColors.background,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
+    colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
+      background: AppColors.background,
+      surface: AppColors.surface,
+      error: AppColors.error,
     ),
     textTheme: const TextTheme(
       headlineLarge: AppTextStyles.headline1,
       headlineMedium: AppTextStyles.headline6,
-      headlineSmall: AppTextStyles.bodyText1,
-      titleLarge: AppTextStyles.bodyText1,
+      bodyLarge: AppTextStyles.bodyText1,
+      bodyMedium: AppTextStyles.bodyText2,
+      labelLarge: AppTextStyles.button,
+      labelSmall: AppTextStyles.label,
+      titleLarge: AppTextStyles.headline6,
       titleMedium: AppTextStyles.bodyText1,
-      titleSmall: AppTextStyles.bodyText1,
-      bodyLarge: AppTextStyles.bodyText2,
-      bodyMedium: AppTextStyles.caption,
+      titleSmall: AppTextStyles.bodyText2,
       bodySmall: AppTextStyles.caption,
-      labelLarge: AppTextStyles.bodyText2,
-      labelMedium: AppTextStyles.caption,
-      labelSmall: AppTextStyles.caption,
     ),
     appBarTheme: const AppBarTheme(
-      backgroundColor: AppColors.primary,
+      backgroundColor: AppColors.surface,
+      elevation: 0,
+      centerTitle: true,
       titleTextStyle: AppTextStyles.headline6,
-      iconTheme: IconThemeData(color: Colors.white),
+      iconTheme: IconThemeData(color: AppColors.icon),
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: AppColors.textPrimary,
+        textStyle: AppTextStyles.button,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+        ),
+        elevation: 0,
+      ),
+    ),
+    inputDecorationTheme: const InputDecorationTheme(
+      filled: true,
+      fillColor: AppColors.surface,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: AppColors.border),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: AppColors.primary, width: 2),
+      ),
+      labelStyle: AppTextStyles.bodyText2,
+      hintStyle: AppTextStyles.caption,
+    ),
+    iconTheme: const IconThemeData(color: AppColors.icon, size: 24),
+    cardTheme: const CardThemeData(
+      color: AppColors.surface,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(16)),
+      ),
+    ),
+    dividerColor: AppColors.border,
   );
 }

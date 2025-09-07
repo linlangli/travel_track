@@ -2,5 +2,6 @@ enum NavigatorTab {
   home,
   discover,
   community,
-  mine, travelInfoPage,
+  mine,
+  travelInfoPage,
 }

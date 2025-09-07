@@ -47,8 +47,7 @@ class NavigatorWidgetState extends State<NavigatorBar> {
       ).button(
         onTap: () {
           setState(() {
-            // selectedTab = NavigatorTab.home;
-            selectedTab = NavigatorTab.travelInfoPage;
+            selectedTab = NavigatorTab.home;
           });
           widget.onTabChanged(selectedTab);
         },
