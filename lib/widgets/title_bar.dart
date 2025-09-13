@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -29,7 +30,7 @@ class TitleBarState extends State<TitleBar> {
         ).button(onTap: () {
           widget.onSetting();
         }),
-        Text('app_name'.tr),
+        Text('app_name'.tr, style: Theme.of(context).textTheme.headlineSmall),
         SvgPicture.asset('assets/images/icons/message_icon.svg',
           width: 24, height: 28,
         ).button(

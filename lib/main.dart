@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:travel_track/theme/app_theme.dart';
+import 'package:travel_track/utils/device.dart';
 
 import 'app/binding.dart';
 import 'app/router.dart';
@@ -16,9 +17,9 @@ void main() async{
 class TravelTrackApp extends StatelessWidget {
   const TravelTrackApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
+    DeviceUtil.init(context);
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     return GetMaterialApp(
       title: 'Travel Track',

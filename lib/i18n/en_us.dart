@@ -3,7 +3,7 @@ const Map<String, String> enUS = {
   'finding': 'Discover',
   'friend': 'Friend',
   'mine': 'Mine',
-  'app_name': 'traval_track',
+  'app_name': 'Travel Track',
   'hello': 'Hello!',
   'state_block_error': "error",
   'mine_title': 'Traval Track',

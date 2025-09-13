@@ -4,48 +4,70 @@ import 'app_colors.dart';
 class AppTextStyles {
   AppTextStyles._();
 
-  static const TextStyle headline1 = TextStyle(
+  static const TextStyle headlineLarge = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
     color: AppColors.textPrimary,
-    fontFamily: 'ZCOOLKuaiLe', // 建议用手写风格字体
   );
 
-  static const TextStyle headline6 = TextStyle(
-    fontSize: 20,
+  static const TextStyle headlineMedium = TextStyle(
+    fontSize: 28,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
-    fontFamily: 'ZCOOLKuaiLe',
   );
 
-  static const TextStyle bodyText1 = TextStyle(
-    fontSize: 16,
+  static const TextStyle headlineSmall = TextStyle(
+    fontSize: 24,
     color: AppColors.textPrimary,
-    fontFamily: 'ZCOOLKuaiLe',
   );
 
-  static const TextStyle bodyText2 = TextStyle(
+  static const TextStyle bodyLarge = TextStyle(
+    fontSize: 14,
+    color: AppColors.textPrimary,
+  );
+
+  static const TextStyle bodyMedium = TextStyle(
+    fontSize: 12,
+    color: AppColors.textPrimary,
+  );
+
+  static const TextStyle bodySmall = TextStyle(
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+    color: AppColors.textPrimary,
+  );
+  static const TextStyle labelLarget = TextStyle(
+    fontWeight: FontWeight.w500,
     fontSize: 14,
     color: AppColors.textSecondary,
-    fontFamily: 'ZCOOLKuaiLe',
   );
 
-  static const TextStyle caption = TextStyle(
+  static const TextStyle labelMedium = TextStyle(
+    fontWeight: FontWeight.w500,
     fontSize: 12,
     color: AppColors.textSecondary,
-    fontFamily: 'ZCOOLKuaiLe',
   );
 
-  static const TextStyle button = TextStyle(
+  static const TextStyle labelSmall = TextStyle(
+    fontSize: 10,
+    color: AppColors.textPrimary,
+  );
+
+  static const TextStyle titleLarge = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w700,
+    color: AppColors.textPrimary,
+  );
+
+  static const TextStyle titleMedium = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: AppColors.textPrimary,
-    fontFamily: 'ZCOOLKuaiLe',
   );
 
-  static const TextStyle label = TextStyle(
+  static const TextStyle titleSmall = TextStyle(
     fontSize: 12,
-    color: AppColors.secondary,
-    fontFamily: 'ZCOOLKuaiLe',
+    fontWeight: FontWeight.w500,
+    color: AppColors.textPrimary,
   );
 }

@@ -6,7 +6,6 @@ class AppColors {
   // 主色
   static const Color primary = Color(0xFFFFC857); // 明亮活力黄橙
   static const Color secondary = Color(0xFF4A90E2); // 辅助蓝
-  static const Color background = Color(0xFFF5F5F5); // 页面背景
   static const Color surface = Color(0xFFFFFFFF); // 卡片/输入框背景
   static const Color textPrimary = Color(0xFF222222); // 主文本
   static const Color textSecondary = Color(0xFF888888); // 次文本

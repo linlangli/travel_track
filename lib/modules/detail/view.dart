@@ -11,5 +11,4 @@ class TravelDetailPage extends GetView<TravelDetailController> {
   Widget build(BuildContext context) {
     return PageWidget(child: TravelInfoWidget());
   }
-
 }

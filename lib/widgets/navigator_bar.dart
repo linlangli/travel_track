@@ -42,7 +42,7 @@ class NavigatorWidgetState extends State<NavigatorBar> {
             width: 28,
             height: 28,
           ),
-          Text('首页', style: Theme.of(context).textTheme.bodyMedium),
+          Text('首页', style: Theme.of(context).textTheme.bodyLarge),
         ],
       ).button(
         onTap: () {
@@ -61,7 +61,7 @@ class NavigatorWidgetState extends State<NavigatorBar> {
             width: 28,
             height: 28,
           ),
-          Text('探索', style: Theme.of(context).textTheme.headlineSmall)
+          Text('探索', style: Theme.of(context).textTheme.bodyLarge)
         ],
       ).button(
         onTap: () {
@@ -80,7 +80,7 @@ class NavigatorWidgetState extends State<NavigatorBar> {
             width: 32,
             height: 32,
           ),
-          Text('社区', style: Theme.of(context).textTheme.headlineSmall)
+          Text('社区', style: Theme.of(context).textTheme.bodyLarge)
         ],
       ).button(type: ButtonType.image,
         onTap: () {
@@ -99,7 +99,7 @@ class NavigatorWidgetState extends State<NavigatorBar> {
             width: 28,
             height: 28,
           ),
-          Text('我的', style: Theme.of(context).textTheme.headlineSmall)
+          Text('我的', style: Theme.of(context).textTheme.bodyLarge)
         ],
       ).button(type: ButtonType.image,
         onTap: () {
