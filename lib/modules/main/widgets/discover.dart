@@ -15,8 +15,8 @@ class DiscoverWidget extends StatelessWidget{
           children: [
             SvgPicture.asset(
               'assets/images/icons/search_icon.svg',
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
             ),
             SizedBox(width: 12),
             Expanded(
@@ -30,8 +30,8 @@ class DiscoverWidget extends StatelessWidget{
             ),
             SvgPicture.asset(
               'assets/images/icons/filter_icon.svg',
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
             ),
           ],
         ),

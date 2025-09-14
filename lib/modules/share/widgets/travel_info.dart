@@ -1,94 +1,220 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:travel_track/extensions/widget.dart';
 import 'package:travel_track/modules/share/widgets/partner.dart';
 import 'package:travel_track/modules/share/widgets/progress.dart';
 import 'package:travel_track/modules/share/widgets/travel_route.dart';
 
-class TravelInfoWidget extends StatelessWidget{
+class TravelInfoWidget extends StatelessWidget {
   const TravelInfoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          children: [
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-            Text("雨崩之行"),
-            Container(
-              child: Text("进行中"),
-            )
-          ],
-        ),
-        Row(
-          children: [
-            Text("参与人员"),
-            PartNerWidget(),
-            Column(
-              children: [
-                SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-                Text("邀请其它好友一起")
-              ],
-            ),
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,).button(),
-          ],
-        ),
-        Row(
-          children: [
-            Text("旅行时间"),
-            Text("2024.05.01 - 2024.05.07"),
-          ],
-        ),
-        Row(
-          children: [
-            Column(
-              children: [
-                Text("注意事项: "),
-                Text("别忘了带身份证")
-              ],
-            ),
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-          ],
-        ),
-        Row(
-          children: [
-            Text("旅行路线"),
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-            Text("查看路线"),
-          ],
-        ),
-        TravelRouteWidget(),
-        Row(
-          children: [
-            Text("实时统计"),
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-          ],
-        ),
-        Row(
-          children: [
-            Text("进度: "),
-            ProgressWidget()
-          ],
-        ),
-        Row(
-          children: [
-            Text("消费: "),
-            ProgressWidget()
-          ],
-        ),
-        Row(
-          children: [
-            SvgPicture.asset('assets/icons/card_icon.svg', width: 16, height: 16,),
-            Column(
-              children: [
-                Text("点我卡擦一下"),
-                SvgPicture.asset('assets/icons/card_icon.svg', width: 64, height: 64,)
-              ],
-            )
-          ],
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SvgPicture.asset(
+                'assets/images/icons/road_sign_icon.svg',
+                width: 28,
+                height: 28,
+              ),
+              Text(
+                "雨崩之行",
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontFamily: 'MuyaoSoftbrush',
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+              SizedBox(width: 8),
+              SvgPicture.asset(
+                'assets/images/icons/begin_button_icon.svg',
+                width: 48,
+                height: 48,
+              ).button(),
+            ],
+          ).marginOnly(top: 16),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Text(
+                "参与人员:",
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 12),
+              PartNerWidget(),
+              SizedBox(width: 8),
+              SvgPicture.asset(
+                'assets/images/icons/invite_message_icon.svg',
+                width: 32,
+                height: 32,
+              ),
+            ],
+          ),
+          SizedBox(height: 24),
+          Row(
+            children: [
+              Text(
+                "旅行时间: ",
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 8),
+              Text(
+                "2024.05.01 - 2024.05.07",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "注意事项: ",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 4),
+                  Text("别忘了带身份证"),
+                ],
+              ),
+              SvgPicture.asset(
+                'assets/images/icons/surprise_icon.svg',
+                width: 80,
+                height: 80,
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Text(
+                    "旅行路线",
+                    style: Theme.of(
+                      context,
+                    ).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Positioned(
+                    left: 60,
+                    top: -16,
+                    child: SvgPicture.asset(
+                      'assets/images/icons/yellow_rocket.svg',
+                      width: 32,
+                      height: 32,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(width: 36),
+              SvgPicture.asset(
+                'assets/images/icons/red_car_icon.svg',
+                width: 28,
+                height: 28,
+              ),
+              SizedBox(width: 4),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Color(0xFFE67A92),
+                ),
+                child: Text("飞机"),
+              ),
+              SizedBox(width: 12),
+              SvgPicture.asset(
+                'assets/images/icons/money_bag_icon.svg',
+                width: 24,
+                height: 24,
+              ),
+              SizedBox(width: 4),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Color(0xFFE67A92),
+                ),
+                child: Text("飞机"),
+              ),
+            ],
+          ),
+          TravelRouteWidget(),
+          SizedBox(height: 24),
+          Row(
+            children: [
+              Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    child: Text(
+                      "旅行统计",
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 64,
+                    top: -10,
+                    child: SvgPicture.asset(
+                      'assets/images/icons/yellow_paint.svg',
+                      width: 22,
+                      height: 22,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: [
+              Text("进度: ", style: Theme.of(context).textTheme.titleSmall),
+              ProgressWidget(),
+            ],
+          ),
+          SizedBox(height: 12),
+          Row(
+            children: [
+              Text("消费: ", style: Theme.of(context).textTheme.titleSmall),
+              ProgressWidget(),
+            ],
+          ),
+          SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              SvgPicture.asset(
+                'assets/images/icons/dining_car_icon.svg',
+                width: 102,
+                height: 78,
+              ).marginOnly(bottom: 12, left: 12),
+              Column(
+                children: [
+                  Text("点我卡擦一下"),
+                  SvgPicture.asset(
+                    'assets/images/icons/camera_icon.svg',
+                    width: 64,
+                    height: 64,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ).paddingSymmetric(horizontal: 24),
     );
   }
 }

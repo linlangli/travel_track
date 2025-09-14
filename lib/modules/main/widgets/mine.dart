@@ -6,6 +6,7 @@ import 'package:travel_track/extensions/widget.dart';
 import 'package:travel_track/modules/main/controller.dart';
 import 'package:travel_track/modules/share/widgets/person_info.dart';
 import 'package:travel_track/modules/share/widgets/travel_info_item.dart';
+import 'package:travel_track/utils/device.dart';
 import 'package:travel_track/widgets/search.dart';
 
 class MineWidget extends StatelessWidget {
@@ -126,7 +127,16 @@ class MineWidget extends StatelessWidget {
           money: 1200.0,
           looks: 100,
           collects: 20,
-        ).marginOnly(bottom: 16),
+        ),
+        SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Container(
+            height: 1,
+            color: Colors.grey,
+            width: 80,
+          ).marginOnly(bottom: 16),
+        ),
         TravelInfoItem(
           type: '徒步',
           title: '行行行行行',

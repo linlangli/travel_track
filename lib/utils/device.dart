@@ -16,6 +16,7 @@ class DeviceUtil {
 
     scaleWidth = screenWidth / designWidth;
     scaleHeight = screenHeight / designHeight;
+    print("DeviceUtil, scaleWidth: $screenWidth");
   }
 
   /// 获取宽度的百分比

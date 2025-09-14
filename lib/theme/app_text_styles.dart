@@ -66,7 +66,7 @@ class AppTextStyles {
   );
 
   static const TextStyle titleSmall = TextStyle(
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.textPrimary,
   );
