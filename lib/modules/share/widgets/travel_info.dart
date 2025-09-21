@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:travel_track/extensions/widget.dart';
+import 'package:travel_track/modules/share/widgets/invite_dialog.dart';
 import 'package:travel_track/modules/share/widgets/partner.dart';
 import 'package:travel_track/modules/share/widgets/progress.dart';
 import 'package:travel_track/modules/share/widgets/travel_route.dart';
@@ -56,7 +57,9 @@ class TravelInfoWidget extends StatelessWidget {
                     'assets/images/icons/invite_message_icon.svg',
                     width: 32,
                     height: 32,
-                  ),
+                  ).button(onTap: () {
+                    InviteDialog.show(context, tripName: "雨崩", inviteCode: "2222");
+                  }),
                 ],
               ).marginOnly(bottom: 24),
               Row(
