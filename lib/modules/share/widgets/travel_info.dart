@@ -13,6 +13,7 @@ class TravelInfoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +30,7 @@ class TravelInfoWidget extends StatelessWidget {
                   fontWeight: FontWeight.normal,
                 ),
               ),
-              SizedBox(width: 8),
+              Spacer(flex: 1,),
               SvgPicture.asset(
                 'assets/images/icons/begin_button_icon.svg',
                 width: 48,
@@ -117,7 +118,7 @@ class TravelInfoWidget extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(width: 36),
+              SizedBox(width: 48),
               SvgPicture.asset(
                 'assets/images/icons/red_car_icon.svg',
                 width: 28,
@@ -149,6 +150,7 @@ class TravelInfoWidget extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 12),
           TravelRouteWidget(),
           SizedBox(height: 24),
           Row(
@@ -191,7 +193,6 @@ class TravelInfoWidget extends StatelessWidget {
               ProgressWidget(),
             ],
           ),
-          SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.end,
