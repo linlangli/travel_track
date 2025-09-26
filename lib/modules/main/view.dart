@@ -34,7 +34,7 @@ class MainPage extends GetView<MainController> {
         },
       ),
       navigation: NavigatorBar(
-        currentTab: NavigatorTab.travelInfoPage,
+        currentTab: NavigatorTab.home,
         onTabChanged: (selectedTab) {
           controller.changeTab(selectedTab);
         },

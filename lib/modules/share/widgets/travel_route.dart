@@ -13,10 +13,8 @@ class TravelRouteWidget extends StatelessWidget {
         'transport': '飞机',
         'cost': 120,
         'description': '早上去花市，晚上去四季餐厅吃饭，住香格里拉酒店',
-        'highlight': [
-          {'text': '四季餐厅', 'emoji': '🍜'},
-          {'text': '香格里拉酒店', 'emoji': '🏨'},
-        ],
+        'dining': "摇窈",
+        "accommodation": "定位定位",
         'active': true,
       },
       {
@@ -25,15 +23,17 @@ class TravelRouteWidget extends StatelessWidget {
         'transport': '高铁',
         'cost': 180,
         'description': '洱海骑行，古城闲逛，晚餐苍山脚下客栈',
-        'highlight': [
-          {'text': '洱海', 'emoji': '🚴'},
-          {'text': '古城', 'emoji': '🏯'},
-        ],
+        'dining': "摇窈",
+        "accommodation": "定位定位",
         'active': false,
       },
     ];
 
     return Column(
+
+
+
+
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(itinerary.length, (index) {
         final item = itinerary[index];
