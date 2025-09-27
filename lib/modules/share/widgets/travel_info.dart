@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:travel_track/app/router.dart';
 import 'package:travel_track/extensions/widget.dart';
 import 'package:travel_track/modules/share/widgets/invite_dialog.dart';
 import 'package:travel_track/modules/share/widgets/partner.dart';
@@ -58,7 +59,8 @@ class TravelInfoWidget extends StatelessWidget {
                     width: 32,
                     height: 32,
                   ).button(onTap: () {
-                    InviteDialog.show(context, tripName: "雨崩", inviteCode: "2222");
+                    // InviteDialog.show(context, tripName: "雨崩", inviteCode: "2222");
+                    Get.toNamed(AppRoute.billPage);
                   }),
                 ],
               ).marginOnly(bottom: 24),

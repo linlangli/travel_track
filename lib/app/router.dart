@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:travel_track/modules/bill/binding.dart';
+import 'package:travel_track/modules/bill/view.dart';
 import 'package:travel_track/modules/detail/binding.dart';
 import 'package:travel_track/modules/detail/view.dart';
 import 'package:travel_track/modules/login/binding.dart';
@@ -9,6 +11,7 @@ import 'package:travel_track/modules/main/view.dart';
 class AppRoute {
   static const loginPage = '/login_page';
   static const mainPage = '/main_page';
+  static const billPage = '/bill_page';
   static const travelDetailPage = '/travel_detail_page';
 
   static final routers = [
@@ -16,6 +19,11 @@ class AppRoute {
       name: loginPage,
       page: () => LoginPage(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: billPage,
+      page: () => BillPage(),
+      binding: BillBinding(),
     ),
     GetPage(
       name: mainPage,

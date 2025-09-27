@@ -17,6 +17,7 @@ dependencies:
   get: ^4.7.2
   flutter_svg: ^2.2.1
   intl: ^0.20.2
+  fl_chart: ^0.66.0 # 新增图表库
 
 dev_dependencies:
 
