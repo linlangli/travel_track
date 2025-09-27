@@ -4,18 +4,17 @@ import 'package:intl/intl.dart';
 
 class BillRecord {
   final DateTime date;
-  final double amount; // 支出为正，暂不处理收入区分，可扩展 sign
-  final String type; // 类型/分类
+  final double amount; // 支出为正
+  final String type;
   final String note;
-
   BillRecord({required this.date, required this.amount, required this.type, required this.note});
 }
 
 class BillController extends GetxController {
   final records = <BillRecord>[];
-
-  // 缓存聚合
   final _dateFormat = DateFormat('yyyy-MM-dd');
+
+  DateTime? selectedHeatDate; // 新增：热力图当前选中日期（去除时分秒）
 
   double get totalAmount => records.fold(0, (p, e) => p + e.amount);
 
@@ -38,6 +37,21 @@ class BillController extends GetxController {
 
   List<DateTime> get sortedDays => amountByDay.keys.toList()..sort();
 
+  void selectHeatDate(DateTime day) {
+    final normalized = DateTime(day.year, day.month, day.day);
+    if (selectedHeatDate == normalized) {
+      selectedHeatDate = null; // 再次点击取消
+    } else {
+      selectedHeatDate = normalized;
+    }
+    update();
+  }
+
+  List<BillRecord> recordsOf(DateTime day) {
+    final n = DateTime(day.year, day.month, day.day);
+    return records.where((r) => r.date.year == n.year && r.date.month == n.month && r.date.day == n.day).toList();
+  }
+
   void loadFromJsonString(String jsonStr) {
     try {
       final parsed = json.decode(jsonStr);
@@ -55,10 +69,13 @@ class BillController extends GetxController {
             records.add(BillRecord(date: date, amount: amount, type: type, note: note));
           }
         }
+        // 清除已不在范围的选中
+        if (selectedHeatDate != null && recordsOf(selectedHeatDate!).isEmpty) {
+            selectedHeatDate = null;
+        }
         update();
       }
     } catch (e) {
-      // 忽略，调用方可提示
       rethrow;
     }
   }
@@ -77,4 +94,3 @@ class BillController extends GetxController {
     return const JsonEncoder.withIndent('  ').convert(list);
   }
 }
-

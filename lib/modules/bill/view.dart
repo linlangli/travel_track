@@ -12,6 +12,9 @@ class BillPage extends GetView<BillController> {
 
   final TextEditingController jsonController = TextEditingController();
 
+  static const double _heatCellSize = 16; // 基础格子边长
+  static const double _heatCellSpacing = 2; // 四周间距
+
   @override
   Widget build(BuildContext context) {
     if (jsonController.text.isEmpty) {
@@ -145,9 +148,9 @@ class BillPage extends GetView<BillController> {
   Widget _lineChartCard(BuildContext context) {
     final days = controller.sortedDays;
     final spots = [
-      for (int i = 0; i < days.length; i++)
-        FlSpot(i.toDouble(), controller.amountByDay[days[i]] ?? 0),
+      for (int i = 0; i < days.length; i++) FlSpot(i.toDouble(), controller.amountByDay[days[i]] ?? 0),
     ];
+    final labelIndices = _computeLabelIndices(days.length); // 新增：计算需要显示的标签索引
     return _sectionCard(
       context,
       title: '日支出折线',
@@ -175,12 +178,16 @@ class BillPage extends GetView<BillController> {
                     bottomTitles: AxisTitles(
                       sideTitles: SideTitles(
                         showTitles: true,
-                        interval: (spots.length / 6).clamp(1, 10).toDouble(),
+                        interval: 1, // 显示密度由内部逻辑控制
                         getTitlesWidget: (value, meta) {
-                          int idx = value.toInt();
+                          final idx = value.toInt();
+                          if (!labelIndices.contains(idx)) return const SizedBox.shrink();
                           if (idx < 0 || idx >= days.length) return const SizedBox();
                           final d = days[idx];
-                          return Text(DateFormat('MM/dd').format(d), style: const TextStyle(fontSize: 10));
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 4),
+                            child: Text(DateFormat('MM/dd').format(d), style: const TextStyle(fontSize: 10)),
+                          );
                         },
                       ),
                     ),
@@ -301,6 +308,8 @@ class BillPage extends GetView<BillController> {
       columns.add(current);
     }
 
+    final double rowBox = _heatCellSize + _heatCellSpacing * 2; // 单行总高度
+
     return _sectionCard(
       context,
       title: '最近90天热力图',
@@ -308,20 +317,13 @@ class BillPage extends GetView<BillController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            height: 120,
+            height: rowBox * 7,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: const [
-                    SizedBox(height: 6),
-                    _WeekLabel('日'),
-                    _WeekLabel('一'),
-                    _WeekLabel('二'),
-                    _WeekLabel('三'),
-                    _WeekLabel('四'),
-                    _WeekLabel('五'),
-                    _WeekLabel('六'),
+                    _WeekLabel('日'), _WeekLabel('一'), _WeekLabel('二'), _WeekLabel('三'), _WeekLabel('四'), _WeekLabel('五'), _WeekLabel('六'),
                   ],
                 ),
                 const SizedBox(width: 4),
@@ -332,8 +334,7 @@ class BillPage extends GetView<BillController> {
                     itemBuilder: (c, col) {
                       return Column(
                         children: [
-                          for (int row = 0; row < 7; row++)
-                            _heatCell(context, columns[col][row], byDay, maxVal),
+                          for (int row = 0; row < 7; row++) _heatCell(context, columns[col][row], byDay, maxVal),
                         ],
                       );
                     },
@@ -361,6 +362,10 @@ class BillPage extends GetView<BillController> {
               const Text('高', style: TextStyle(fontSize: 10)),
             ],
           ),
+          if (controller.selectedHeatDate != null) ...[
+            const SizedBox(height: 12),
+            _dayDetail(context, controller.selectedHeatDate!),
+          ]
         ],
       ),
     );
@@ -368,22 +373,42 @@ class BillPage extends GetView<BillController> {
 
   Widget _heatCell(BuildContext context, DateTime? date, Map<DateTime, double> byDay, double maxVal) {
     if (date == null) {
-      return const SizedBox(width: 16, height: 16);
+      return Container(
+        width: _heatCellSize,
+        height: _heatCellSize,
+        margin: const EdgeInsets.all(_heatCellSpacing),
+      );
     }
     final key = DateTime(date.year, date.month, date.day);
     final v = byDay[key] ?? 0;
     final intensity = maxVal == 0 ? 0.0 : (v / maxVal);
-    final color = v == 0 ? _alpha(Theme.of(context).colorScheme.surfaceContainerHighest, .3)
+    final selected = controller.selectedHeatDate == key;
+    final baseColor = v == 0 ? _alpha(Theme.of(context).colorScheme.surfaceContainerHighest, .3)
         : _heatColor(Theme.of(context).colorScheme.primary, intensity.toDouble());
-    return Tooltip(
-      message: DateFormat('MM/dd').format(date) + (v > 0 ? '  ¥${v.toStringAsFixed(2)}' : '  无'),
-      child: Container(
-        width: 16,
-        height: 16,
-        margin: const EdgeInsets.all(1.5),
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: BorderRadius.circular(3),
+    return GestureDetector(
+      onTap: () => controller.selectHeatDate(date),
+      child: Tooltip(
+        message: DateFormat('MM/dd').format(date) + (v > 0 ? '  ¥${v.toStringAsFixed(2)}' : '  无'),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 160),
+            width: _heatCellSize,
+            height: _heatCellSize,
+            margin: const EdgeInsets.all(_heatCellSpacing),
+            decoration: BoxDecoration(
+              color: baseColor,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: selected ? Theme.of(context).colorScheme.primary : Colors.transparent,
+                width: selected ? 2 : 1,
+              ),
+              boxShadow: selected ? [
+                BoxShadow(
+                  color: Theme.of(context).colorScheme.primary.withOpacity(.35),
+                  blurRadius: 8,
+                  spreadRadius: 1,
+                )
+              ] : null,
+            ),
         ),
       ),
     );
@@ -421,6 +446,85 @@ class BillPage extends GetView<BillController> {
       ),
     );
   }
+
+  List<int> _computeLabelIndices(int length) {
+    if (length <= 8) {
+      return [for (int i = 0; i < length; i++) i];
+    }
+    const maxLabels = 6; // 期望最多标签
+    final step = (length / (maxLabels - 1)).ceil();
+    final indices = <int>{};
+    for (int i = 0; i < length; i += step) {
+      indices.add(i);
+    }
+    indices.add(length - 1);
+    return indices.toList()..sort();
+  }
+
+  Widget _dayDetail(BuildContext context, DateTime day) {
+    final list = controller.recordsOf(day);
+    final total = list.fold<double>(0, (p, e) => p + e.amount);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(DateFormat('yyyy-MM-dd').format(day), style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(width: 12),
+              Text('共 ${list.length} 条 · ¥${total.toStringAsFixed(2)}', style: Theme.of(context).textTheme.bodySmall),
+              const Spacer(),
+              InkWell(
+                onTap: () => controller.selectHeatDate(day),
+                child: const Icon(Icons.close, size: 16),
+              )
+            ],
+          ),
+          const SizedBox(height: 8),
+          if (list.isEmpty)
+            Text('无记录', style: Theme.of(context).textTheme.bodySmall)
+          else
+            Column(
+              children: [
+                for (final r in list)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 4),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 8,
+                          margin: const EdgeInsets.only(right: 8),
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.primary,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${r.type}  ¥${r.amount.toStringAsFixed(2)}', style: Theme.of(context).textTheme.bodyMedium),
+                              if (r.note.isNotEmpty)
+                                Text(r.note, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.outline), maxLines: 1, overflow: TextOverflow.ellipsis),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+              ],
+            ),
+        ],
+      ),
+    );
+  }
 }
 
 class _WeekLabel extends StatelessWidget {
@@ -428,9 +532,10 @@ class _WeekLabel extends StatelessWidget {
   const _WeekLabel(this.text);
   @override
   Widget build(BuildContext context) {
+    // 与格子同总尺寸（含间距）保持对齐
     return SizedBox(
-      width: 18,
-      height: 16,
+      width: BillPage._heatCellSize + BillPage._heatCellSpacing * 2,
+      height: BillPage._heatCellSize + BillPage._heatCellSpacing * 2,
       child: Center(
         child: Text(text, style: const TextStyle(fontSize: 10)),
       ),
