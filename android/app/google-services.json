@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1018841812711",
+    "project_id": "traveltrack-90652",
+    "storage_bucket": "traveltrack-90652.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1018841812711:android:1e234d6ad5b2a1cca45c42",
+        "android_client_info": {
+          "package_name": "com.github.linlangli.travel_track"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBshG5Hr_uXjC7oEYS7JEODSKlhGLZsxQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
