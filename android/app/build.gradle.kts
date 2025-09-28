@@ -10,7 +10,7 @@ plugins {
 android {
     namespace = "com.github.linlangli.travel_track"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

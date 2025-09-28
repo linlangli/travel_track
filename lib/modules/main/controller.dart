@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:travel_track/enums/navigator_bar.dart';
@@ -11,6 +12,8 @@ class MainController extends GetxController {
 
   void changeTab(NavigatorTab tab) {
     selectedTab = tab;
+    print("Switching to tab: ${tab.name}");
+    FirebaseAnalytics.instance.logScreenView(screenName: tab.name);
     update();
   }
 
